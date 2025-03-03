@@ -39,12 +39,11 @@ public class Game {
         Shape studentShape = new BoxShape(1,2);
         DynamicBody student = new DynamicBody(world, studentShape);
         student.setPosition(new Vec2(4,-5));
-        student.addImage(new BodyImage("data/student.png", 4));
+        student.addImage(new BodyImage("data/iio3xm4o1sn51.png", 4));
 
 
         //3. make a view to look into the game world
-        UserView view = new UserView(world, 500, 500);
-
+        BackgroundView view = new BackgroundView(world, 500, 500, "data/360_F_717598564_BcH9JsPcokbf9ddcgi8wXDmbsMUyr8Y8.jpg");
 
         //optional: draw a 1-metre grid over the view
         // view.setGridResolution(1);
