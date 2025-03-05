@@ -4,7 +4,7 @@ import city.cs.engine.*;
 import city.cs.engine.Shape;
 import org.jbox2d.common.Vec2;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -33,17 +33,25 @@ public class Game {
         // make a suspended platform
         Shape platformShape = new BoxShape(3, 0.5f);
         StaticBody platform1 = new StaticBody(world, platformShape);
-        platform1.setPosition(new Vec2(-8, -4f));
+        platform1.setPosition(new Vec2(3, -5f));
+
+        StaticBody platform2 = new StaticBody(world, platformShape);
+        platform2.setPosition(new Vec2(-5, -7f));
 
         //make a character (with an overlaid image)
-        Shape studentShape = new BoxShape(1,2);
-        DynamicBody student = new DynamicBody(world, studentShape);
-        student.setPosition(new Vec2(4,-5));
-        student.addImage(new BodyImage("data/iio3xm4o1sn51.png", 4));
+        Shape studentShape = new BoxShape(01,2f);
+        Player student = new Player(world, studentShape);
+        student.setPosition(new Vec2(-14, -5));
 
+        //Add the StudentController to the student
+        PlayerControls studentController = new PlayerControls(student);
 
         //3. make a view to look into the game world
-        BackgroundView view = new BackgroundView(world, 500, 500, "data/360_F_717598564_BcH9JsPcokbf9ddcgi8wXDmbsMUyr8Y8.jpg");
+        BackgroundView view = new BackgroundView(world, 700, 600, "data/360_F_717598564_BcH9JsPcokbf9ddcgi8wXDmbsMUyr8Y8.jpg");
+        view.addKeyListener(studentController);
+
+        view.setFocusable(true);
+        view.requestFocusInWindow();
 
         //optional: draw a 1-metre grid over the view
         // view.setGridResolution(1);
@@ -66,7 +74,7 @@ public class Game {
         frame.setVisible(true);
 
         //optional: uncomment this to make a debugging view
-         JFrame debugView = new DebugViewer(world, 500, 500);
+         JFrame debugView = new DebugViewer(world, 700, 600);
 
         // start our game world simulation!
         world.start();

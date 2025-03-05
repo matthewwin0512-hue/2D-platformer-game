@@ -1,7 +1,6 @@
 package game;
 
-import city.cs.engine.UserView;
-import city.cs.engine.World;
+import city.cs.engine.*;
 
 import javax.swing.*;
 import java.awt.*;
