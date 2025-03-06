@@ -17,7 +17,7 @@ public class PlayerControls extends KeyAdapter {
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             student.startWalking(5); // Move right
         } else if (keyCode == KeyEvent.VK_SPACE) {
-            student.jump(10); // Jump
+            student.jump(12); // Jump
         }
     }
 

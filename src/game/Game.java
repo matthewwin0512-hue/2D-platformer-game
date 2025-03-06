@@ -33,10 +33,10 @@ public class Game {
         // make a suspended platform
         Shape platformShape = new BoxShape(3, 0.5f);
         StaticBody platform1 = new StaticBody(world, platformShape);
-        platform1.setPosition(new Vec2(3, -5f));
+        platform1.setPosition(new Vec2(3, 1f));
 
         StaticBody platform2 = new StaticBody(world, platformShape);
-        platform2.setPosition(new Vec2(-5, -7f));
+        platform2.setPosition(new Vec2(-5, -5f));
 
         //make a character (with an overlaid image)
         Shape studentShape = new BoxShape(01,2f);
@@ -45,6 +45,16 @@ public class Game {
 
         //Add the StudentController to the student
         PlayerControls studentController = new PlayerControls(student);
+
+        //make the enemy
+        Shape enemyShape = new BoxShape(01, 2f);
+        Enemy enemy = new Enemy(world, enemyShape);
+        enemy.setPosition(new Vec2(3, -5));
+
+        //make enemy
+        Shape itemShape = new BoxShape(01, 2f);
+        Collectible collectible = new Collectible(world, itemShape);
+        collectible.setPosition(new Vec2(3, 6f));
 
         //3. make a view to look into the game world
         BackgroundView view = new BackgroundView(world, 700, 600, "data/360_F_717598564_BcH9JsPcokbf9ddcgi8wXDmbsMUyr8Y8.jpg");
