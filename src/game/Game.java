@@ -43,7 +43,7 @@ public class Game {
 
         //make a character (with an overlaid image)
         Shape studentShape = new BoxShape(01,2f);
-        Player student = new Player(world, studentShape);
+        Player student = new Player(world, studentShape, healthBar);
         student.setPosition(new Vec2(-14, -5));
 
         //Add the StudentController to the student
