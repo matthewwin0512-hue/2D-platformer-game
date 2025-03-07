@@ -38,6 +38,9 @@ public class Game {
         StaticBody platform2 = new StaticBody(world, platformShape);
         platform2.setPosition(new Vec2(-5, -5f));
 
+        // Create the health bar
+        HealthBar healthBar = new HealthBar();
+
         //make a character (with an overlaid image)
         Shape studentShape = new BoxShape(01,2f);
         Player student = new Player(world, studentShape);
@@ -51,7 +54,7 @@ public class Game {
         Enemy enemy = new Enemy(world, enemyShape);
         enemy.setPosition(new Vec2(3, -5));
 
-        //make enemy
+        //make item
         Shape itemShape = new BoxShape(01, 2f);
         Collectible collectible = new Collectible(world, itemShape);
         collectible.setPosition(new Vec2(3, 6f));
@@ -70,7 +73,12 @@ public class Game {
         //4. create a Java window (frame) and add the game
         //   view to it
         final JFrame frame = new JFrame("City Game");
-        frame.add(view);
+        //frame.add(view);//
+        frame.setLayout(new BorderLayout());
+        // Add the health bar to the top of the frame
+        frame.add(healthBar, BorderLayout.NORTH);
+        // Add the game view to the center of the frame
+        frame.add(view, BorderLayout.CENTER);
 
         // enable the frame to quit the application
         // when the x button is pressed
@@ -82,6 +90,23 @@ public class Game {
         frame.pack();
         // finally, make the frame visible
         frame.setVisible(true);
+
+        world.addStepListener(new StepListener() {
+            @Override
+            public void preStep(StepEvent stepEvent) {
+                // Update the health bar with the player's current health
+                //healthBar.setHealth(student.getHealth());
+            }
+
+            @Override
+            public void postStep(StepEvent stepEvent) {
+                // Not used
+            }
+        });
+
+        // Add collision listeners
+        student.addCollisionListener(new PlayerCollectibleCollision(student)); // Player vs. Collectible
+        student.addCollisionListener(new PlayerEnemyCollision(student)); // Player vs. Enemy
 
         //optional: uncomment this to make a debugging view
          JFrame debugView = new DebugViewer(world, 700, 600);

@@ -17,4 +17,15 @@ public class Player extends Walker {
             destroy(); // Remove player from the world
         }
     }
+
+    public void regainHealth(int amount) {
+        health += amount;
+        if (health > 100) {
+            health = 100; // Ensure health doesn't exceed 100
+        }
+    }
+
+    public int getHealth() {
+        return health;
+    }
 }
