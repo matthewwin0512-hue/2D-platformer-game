@@ -44,15 +44,19 @@ public class Game {
         //make a character (with an overlaid image)
         Shape studentShape = new BoxShape(01,2f);
         Player student = new Player(world, studentShape, healthBar);
-        student.setPosition(new Vec2(-14, -5));
+        student.setPosition(new Vec2(-14, -9));
 
         //Add the StudentController to the student
         PlayerControls studentController = new PlayerControls(student);
 
         //make the enemy
         Shape enemyShape = new BoxShape(01, 2f);
-        Enemy enemy = new Enemy(world, enemyShape);
-        enemy.setPosition(new Vec2(3, -5));
+        Enemy enemy = new Enemy(world, enemyShape, 3, 15, 2);
+        enemy.setPosition(new Vec2(3, -9));
+
+        // make 2nd enemy
+        Enemy enemy2 = new Enemy(world, enemyShape, -14, 2, 2);
+        enemy2.setPosition(new Vec2(2, -9));
 
         //make item
         Shape itemShape = new BoxShape(01, 2f);
