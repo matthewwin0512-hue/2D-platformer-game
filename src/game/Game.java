@@ -64,7 +64,7 @@ public class Game {
         collectible.setPosition(new Vec2(3, 6f));
 
         //3. make a view to look into the game world
-        BackgroundView view = new BackgroundView(world, 700, 600, "data/360_F_717598564_BcH9JsPcokbf9ddcgi8wXDmbsMUyr8Y8.jpg");
+        BackgroundView view = new BackgroundView(world, 700, 600, "data/360_F_717598564_BcH9JsPcokbf9ddcgi8wXDmbsMUyr8Y8.jpg", healthBar);
         view.addKeyListener(studentController);
 
         view.setFocusable(true);
@@ -79,8 +79,6 @@ public class Game {
         final JFrame frame = new JFrame("City Game");
         //frame.add(view);//
         frame.setLayout(new BorderLayout());
-        // Add the health bar to the top of the frame
-        frame.add(healthBar, BorderLayout.NORTH);
         // Add the game view to the center of the frame
         frame.add(view, BorderLayout.CENTER);
 
@@ -113,7 +111,7 @@ public class Game {
         student.addCollisionListener(new PlayerEnemyCollision(student)); // Player vs. Enemy
 
         //optional: uncomment this to make a debugging view
-         JFrame debugView = new DebugViewer(world, 700, 600);
+        JFrame debugView = new DebugViewer(world, 700, 600);
 
         // start our game world simulation!
         world.start();

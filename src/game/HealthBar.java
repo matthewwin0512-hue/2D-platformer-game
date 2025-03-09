@@ -1,26 +1,30 @@
 package game;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class HealthBar extends JPanel {
-    private JProgressBar healthBar;
+public class HealthBar {
+    private int health;
 
     public HealthBar() {
-        // Initialize the health bar
-        healthBar = new JProgressBar(0, 100); // Min: 0, Max: 100
-        healthBar.setValue(100); // Initial health: 100
-        healthBar.setStringPainted(true); // Show health percentage
-        healthBar.setForeground(Color.RED); // Set the color of the health bar
-        healthBar.setBackground(Color.LIGHT_GRAY); // Set the background color
-
-        // Add the health bar to the panel
-        this.setLayout(new BorderLayout());
-        this.add(healthBar, BorderLayout.CENTER);
+        this.health = 100; // Initial health
     }
 
-    // Method to update the health bar
     public void setHealth(int health) {
-        healthBar.setValue(health);
+        this.health = health;
+    }
+
+    public void draw(Graphics2D g) {
+        // Draw health as text
+        g.setColor(Color.WHITE); // Set text color
+        g.setFont(new Font("Arial", Font.BOLD, 20)); // Set font
+        g.drawString("Health: " + health, 20, 30); // Draw health text
+
+        // Draw a progress bar for health
+        int barWidth = 100;
+        int barHeight = 10;
+        g.setColor(Color.RED); // Health bar color
+        g.fillRect(20, 40, health, barHeight); // Draw health bar
+        g.setColor(Color.WHITE); // Border color
+        g.drawRect(20, 40, barWidth, barHeight); // Draw health bar border
     }
 }
