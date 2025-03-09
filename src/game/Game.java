@@ -55,8 +55,8 @@ public class Game {
         enemy.setPosition(new Vec2(3, -9));
 
         // make 2nd enemy
-        Enemy enemy2 = new Enemy(world, enemyShape, -14, 2, 2);
-        enemy2.setPosition(new Vec2(2, -9));
+        Enemy enemy2 = new Enemy(world, enemyShape, -14, 1, 2);
+        enemy2.setPosition(new Vec2(1, -9));
 
         //make item
         Shape itemShape = new BoxShape(01, 2f);
