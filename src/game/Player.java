@@ -2,32 +2,37 @@ package game;
 
 import city.cs.engine.*;
 
+/**
+ * A class representing the player character in the game.
+ * The player is a Walker object that can move, take damage, and regain health.
+ * The player's health is tracked and displayed using a HealthBar.
+ */
 public class Player extends Walker {
-    private int health;
-    private HealthBar healthBar;
+    private int health; // The current health of the player
+    private HealthBar healthBar; // Reference to the HealthBar to display the player's health
 
     public Player(World world, Shape shape, HealthBar healthBar) {
-        super(world, shape);
-        this.health = 100;
-        this.healthBar = healthBar;
-        addImage(new BodyImage("data/iio3xm4o1sn51.png", 4)); // Add player image
-        healthBar.setHealth(health);
+        super(world, shape); // Call the superclass constructor to initialize the Walker
+        this.health = 100; // Set initial health to 100
+        this.healthBar = healthBar; // Initialize the HealthBar reference
+        addImage(new BodyImage("data/iio3xm4o1sn51.png", 4)); // Add an image to the player
+        healthBar.setHealth(health); // Update the HealthBar with the initial health value
     }
 
     public void takeDamage(int damage) {
-        health -= damage;
+        health -= damage; // Reduce health by the damage amount
         if (health <= 0) {
-            destroy();// Remove player from the world
+            destroy(); // Remove the player from the world if health is 0 or below
         }
-        healthBar.setHealth(health);
+        healthBar.setHealth(health); // Update the HealthBar with the new health value
     }
 
     public void regainHealth(int amount) {
-        health += amount;
+        health += amount; // Increase health by the specified amount
         if (health > 100) {
-            health = 100; // Ensure health doesn't exceed 100
+            health = 100; // Cap health at 100
         }
-        healthBar.setHealth(health);
+        healthBar.setHealth(health); // Update the HealthBar with the new health value
     }
 
     public int getHealth() {

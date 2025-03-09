@@ -3,6 +3,11 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
+/**
+ * A class representing an enemy in the game.
+ * The enemy patrols back and forth between two boundaries and interacts with the player.
+ **/
+
 public class Enemy extends DynamicBody implements StepListener {
     private float leftBoundary;  // Left boundary for patrolling
     private float rightBoundary; // Right boundary for patrolling

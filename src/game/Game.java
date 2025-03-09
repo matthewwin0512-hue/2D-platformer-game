@@ -20,10 +20,10 @@ public class Game {
     /** Initialise a new Game. */
     public Game() {
 
-        //1. make an empty game world
+        // make an empty game world
         World world = new World();
 
-        //2. populate it with bodies (ex: platforms, collectibles, characters)
+        // populate it with bodies (ex: platforms, collectibles, characters)
 
         //make a ground platform
         Shape shape = new BoxShape(30, 0.5f);
@@ -63,19 +63,16 @@ public class Game {
         Collectible collectible = new Collectible(world, itemShape);
         collectible.setPosition(new Vec2(3, 6f));
 
-        //3. make a view to look into the game world
+        // make a view to look into the game world
         BackgroundView view = new BackgroundView(world, 700, 600, "data/360_F_717598564_BcH9JsPcokbf9ddcgi8wXDmbsMUyr8Y8.jpg", healthBar);
         view.addKeyListener(studentController);
 
         view.setFocusable(true);
         view.requestFocusInWindow();
 
-        //optional: draw a 1-metre grid over the view
-        // view.setGridResolution(1);
 
-
-        //4. create a Java window (frame) and add the game
-        //   view to it
+        // create a Java window (frame) and add the game
+        // view to it
         final JFrame frame = new JFrame("City Game");
         //frame.add(view);//
         frame.setLayout(new BorderLayout());
@@ -92,19 +89,6 @@ public class Game {
         frame.pack();
         // finally, make the frame visible
         frame.setVisible(true);
-
-        world.addStepListener(new StepListener() {
-            @Override
-            public void preStep(StepEvent stepEvent) {
-                // Update the health bar with the player's current health
-                //healthBar.setHealth(student.getHealth());
-            }
-
-            @Override
-            public void postStep(StepEvent stepEvent) {
-                // Not used
-            }
-        });
 
         // Add collision listeners
         student.addCollisionListener(new PlayerCollectibleCollision(student)); // Player vs. Collectible

@@ -3,11 +3,15 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
+/**
+ * A class representing a collision listener for interactions between the player and enemies.
+ * When the player collides with an enemy, the player takes damage and is pushed away.
+ */
 public class PlayerEnemyCollision implements CollisionListener {
-    private Player player;
+    private Player player; // Reference to the player object
 
     public PlayerEnemyCollision(Player player) {
-        this.player = player;
+        this.player = player; // Initialize the player reference
     }
 
     @Override
@@ -15,10 +19,10 @@ public class PlayerEnemyCollision implements CollisionListener {
         // Check if the collision is between the player and an enemy
         if (e.getReportingBody() instanceof Player && e.getOtherBody() instanceof Enemy) {
             // Apply damage to the player
-            player.takeDamage(10); // Decrement player health
+            player.takeDamage(10); // Decrement player health by 10
             System.out.println("Player hit by enemy! Health: " + player.getHealth());
 
-            // Push the player to the left
+            // Push the player away from the enemy
             pushPlayerAway(e);
         }
     }
@@ -39,6 +43,6 @@ public class PlayerEnemyCollision implements CollisionListener {
 
         // Optional: Add a small upward force to make the pushback more dynamic
         float pushStrength = 5.0f; // Adjust this value as needed
-        player.setLinearVelocity(new Vec2(pushDistance * pushStrength, 2)); // Adjust values as needed
+        player.setLinearVelocity(new Vec2(pushDistance * pushStrength, 2)); // Apply a small upward force
     }
 }
