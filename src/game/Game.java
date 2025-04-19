@@ -11,99 +11,25 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- * Your main game entry point
- */
-public class Game {
+import game.levels.Level1;
 
+/** Your main game entry point */
+
+public class Game {
+    private JFrame frame;
 
     /** Initialise a new Game. */
     public Game() {
-
-        // make an empty game world
-        World world = new World();
-
-        // populate it with bodies (ex: platforms, collectibles, characters)
-
-        //make a ground platform
-        Shape shape = new BoxShape(30, 0.5f);
-        StaticBody ground = new StaticBody(world, shape);
-        ground.setPosition(new Vec2(0f, -11.5f));
-
-        // make a suspended platform
-        Shape platformShape = new BoxShape(3, 0.5f);
-        StaticBody platform1 = new StaticBody(world, platformShape);
-        platform1.setPosition(new Vec2(3, 1f));
-
-        StaticBody platform2 = new StaticBody(world, platformShape);
-        platform2.setPosition(new Vec2(-5, -5f));
-
-        // Create the health bar
-        HealthBar healthBar = new HealthBar();
-
-        //make a character (with an overlaid image)
-        Shape studentShape = new BoxShape(01,2f);
-        Player student = new Player(world, studentShape, healthBar);
-        student.setPosition(new Vec2(-14, -9));
-
-        //Add the StudentController to the student
-        PlayerControls studentController = new PlayerControls(student);
-
-        //make the enemy
-        Shape enemyShape = new BoxShape(01, 2f);
-        Enemy enemy = new Enemy(world, enemyShape, 3, 15, 2);
-        enemy.setPosition(new Vec2(3, -9));
-
-        // make 2nd enemy
-        Enemy enemy2 = new Enemy(world, enemyShape, -14, 1, 2);
-        enemy2.setPosition(new Vec2(1, -9));
-
-        //make item
-        Shape itemShape = new BoxShape(01, 2f);
-        Collectible collectible = new Collectible(world, itemShape);
-        collectible.setPosition(new Vec2(3, 6f));
-
-        // make a view to look into the game world
-        BackgroundView view = new BackgroundView(world, 700, 600, "data/360_F_717598564_BcH9JsPcokbf9ddcgi8wXDmbsMUyr8Y8.jpg", healthBar);
-        view.addKeyListener(studentController);
-
-        view.setFocusable(true);
-        view.requestFocusInWindow();
-
-
-        // create a Java window (frame) and add the game
-        // view to it
-        final JFrame frame = new JFrame("City Game");
-        //frame.add(view);//
-        frame.setLayout(new BorderLayout());
-        // Add the game view to the center of the frame
-        frame.add(view, BorderLayout.CENTER);
-
-        // enable the frame to quit the application
-        // when the x button is pressed
+        frame = new JFrame("City Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
-        // don't let the frame be resized
         frame.setResizable(false);
-        // size the frame to fit the world view
-        frame.pack();
-        // finally, make the frame visible
-        frame.setVisible(true);
 
-        // Add collision listeners
-        student.addCollisionListener(new PlayerCollectibleCollision(student)); // Player vs. Collectible
-        student.addCollisionListener(new PlayerEnemyCollision(student)); // Player vs. Enemy
-
-        //optional: uncomment this to make a debugging view
-        JFrame debugView = new DebugViewer(world, 700, 600);
-
-        // start our game world simulation!
-        world.start();
+        new Level1(frame); // All game content moves HERE
     }
 
     /** Run the game. */
     public static void main(String[] args) {
-
         new Game();
     }
 }
