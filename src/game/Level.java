@@ -14,11 +14,15 @@ public abstract class Level extends World {
     protected BackgroundView view;
     protected DebugViewer debugView;
 
+    private Wall wall;
+    private final int coinsToCollect = 5;
+    private final List<Coin> coins = new ArrayList<>();
+
     public Level(JFrame frame, String levelName, String backgroundImage, int targetScore) {
         this.healthBar = new HealthBar();
 
         // View setup
-        this.view = new BackgroundView(this, 700, 600, backgroundImage, healthBar);
+        this.view = new BackgroundView(this, 800, 600, backgroundImage, healthBar);
         frame.add(view);
         view.setFocusable(true);
         view.requestFocusInWindow();
@@ -35,6 +39,7 @@ public abstract class Level extends World {
         if (player != null) {
             player.addCollisionListener(new PlayerCollectibleCollision(player));
             player.addCollisionListener(new PlayerEnemyCollision(player));
+            player.addCollisionListener(new CoinCollision(player, this));
         }
     }
 
@@ -43,6 +48,19 @@ public abstract class Level extends World {
         player.setPosition(position);
         view.addKeyListener(new PlayerControls(player));
         return player;
+    }
+
+    public void createGate() {
+        // Position the gate at the left edge of the view
+        wall = new Wall(this, new Vec2(20f, 3f));
+    }
+
+    public void removeGate() {
+        if (wall != null) {
+            wall.destroy();
+            wall = null;
+            System.out.println("Gate removed!");
+        }
     }
 
     public abstract void populate();

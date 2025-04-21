@@ -10,11 +10,13 @@ import city.cs.engine.*;
 public class Player extends Walker {
     private int health; // The current health of the player
     private HealthBar healthBar; // Reference to the HealthBar to display the player's health
+    private int coinCount;
 
     public Player(World world, Shape shape, HealthBar healthBar) {
         super(world, shape); // Call the superclass constructor to initialize the Walker
         this.health = 100; // Set initial health to 100
         this.healthBar = healthBar; // Initialize the HealthBar reference
+        this.coinCount = 0;
         addImage(new BodyImage("data/iio3xm4o1sn51.png", 4)); // Add an image to the player
         healthBar.setHealth(health); // Update the HealthBar with the initial health value
     }
@@ -37,5 +39,15 @@ public class Player extends Walker {
 
     public int getHealth() {
         return health;
+    }
+
+    public void incrementCoinCount() {
+        coinCount++;
+        System.out.println("Coins collected: " + coinCount);
+        healthBar.setCoins(coinCount, 5);
+    }
+
+    public int getCoinCount() {
+        return coinCount;
     }
 }
