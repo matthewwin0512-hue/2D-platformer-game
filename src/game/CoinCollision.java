@@ -18,7 +18,7 @@ public class CoinCollision implements CollisionListener {
             player.incrementCoinCount();
 
             if (player.getCoinCount() >= 5) {
-                level.removeGate();
+                level.removeWall();
             }
         }
     }

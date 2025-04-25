@@ -11,24 +11,40 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import game.levels.Level1;
-
-/** Your main game entry point */
+// Your main game entry point //
 
 public class Game {
-    private JFrame frame;
+    private Level currentLevel;
+    private int currentLevelNumber = 1;
 
-    /** Initialise a new Game. */
-    public Game() {
-        frame = new JFrame("City Game");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationByPlatform(true);
-        frame.setResizable(false);
-
-        new Level1(frame); // All game content moves HERE
+    public int getCurrentLevelNumber() {
+        return currentLevelNumber;
     }
 
-    /** Run the game. */
+    public Game() {
+        loadLevel(currentLevelNumber);
+    }
+
+    private void loadLevel(int levelNumber) {
+        if (currentLevel != null) {
+            currentLevel.destroy();
+        }
+
+        switch(levelNumber) {
+            //case 1: currentLevel = new Level1(this); break;
+            case 1: currentLevel = new Level2(this); break;
+            //case 3: currentLevel = new Level3(this); break;
+            default: throw new IllegalArgumentException("Invalid level number");
+        }
+
+        currentLevel.start();
+    }
+
+    public void goToNextLevel() {
+        currentLevelNumber++;
+        loadLevel(currentLevelNumber);
+    }
+
     public static void main(String[] args) {
         new Game();
     }

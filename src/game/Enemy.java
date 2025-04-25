@@ -22,7 +22,7 @@ public class Enemy extends DynamicBody implements StepListener {
         this.movingRight = true; // Start moving to the right
 
         // Add an image to the enemy
-        addImage(new BodyImage("data/an871k4o1sn51.png", 4));
+        addImage(new BodyImage("data/d9a0e811a3c5c857ca3b6fc5a43840f2.gif", 6f));
 
         // Add this enemy as a StepListener
         world.addStepListener(this);

@@ -1,6 +1,7 @@
 package game;
 
 import city.cs.engine.*;
+import org.jbox2d.common.Vec2;
 
 /**
  * A class representing the player character in the game.
@@ -17,7 +18,7 @@ public class Player extends Walker {
         this.health = 100; // Set initial health to 100
         this.healthBar = healthBar; // Initialize the HealthBar reference
         this.coinCount = 0;
-        addImage(new BodyImage("data/iio3xm4o1sn51.png", 4)); // Add an image to the player
+        addImage(new BodyImage("data/output-onlinegiftools-ezgif.com-crop (1).gif", 5f)); // Add an image to the player
         healthBar.setHealth(health); // Update the HealthBar with the initial health value
     }
 
