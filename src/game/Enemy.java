@@ -13,6 +13,38 @@ public class Enemy extends DynamicBody implements StepListener {
     private float rightBoundary; // Right boundary for patrolling
     private float speed;         // Movement speed
     private boolean movingRight; // Direction flag
+    private boolean facingRight = true; // Track visual facing direction
+
+    protected float getLeftBoundary() {
+        return leftBoundary;
+    }
+
+    protected float getRightBoundary() {
+        return rightBoundary;
+    }
+
+    protected float getSpeed() {
+        return speed;
+    }
+
+    protected boolean isMovingRight() {
+        return movingRight;
+    }
+
+    protected void setMovingRight(boolean movingRight) {
+        this.movingRight = movingRight;
+    }
+
+    protected boolean isFacingRight() {
+        return facingRight;
+    }
+
+    protected void setFacingRight(boolean facingRight) {
+        if (this.facingRight != facingRight) {
+            this.facingRight = facingRight;
+            updateImage();
+        }
+    }
 
     public Enemy(World world, Shape shape, float leftBoundary, float rightBoundary, float speed) {
         super(world, shape);
@@ -21,11 +53,18 @@ public class Enemy extends DynamicBody implements StepListener {
         this.speed = speed;
         this.movingRight = true; // Start moving to the right
 
-        // Add an image to the enemy
-        addImage(new BodyImage("data/d9a0e811a3c5c857ca3b6fc5a43840f2.gif", 6f));
+        updateImage();
 
         // Add this enemy as a StepListener
         world.addStepListener(this);
+    }
+
+    private void updateImage() {
+        removeAllImages();
+        String image = facingRight ?
+                "data/d9a0e811a3c5c857ca3b6fc5a43840f2.gif" : // Right-facing image
+                "data/ezgif.com-rotate3.gif"; // Left-facing image
+        addImage(new BodyImage(image, 6f));
     }
 
     @Override
@@ -40,12 +79,14 @@ public class Enemy extends DynamicBody implements StepListener {
             movingRight = false; // Change direction to the left
         }
 
-        // Move the enemy
-        if (movingRight) {
-            setLinearVelocity(new Vec2(speed, 0)); // Move right
-        } else {
-            setLinearVelocity(new Vec2(-speed, 0)); // Move left
+        // Update facing direction if changed
+        if (movingRight != facingRight) {
+            facingRight = movingRight;
+            updateImage();
         }
+
+        // Move the enemy
+        setLinearVelocity(new Vec2(movingRight ? speed : -speed, 0));
     }
 
     @Override

@@ -12,14 +12,15 @@ public class Player extends Walker {
     private int health; // The current health of the player
     private HealthBar healthBar; // Reference to the HealthBar to display the player's health
     private int coinCount;
+    private boolean facingRight = true;
 
     public Player(World world, Shape shape, HealthBar healthBar) {
         super(world, shape); // Call the superclass constructor to initialize the Walker
         this.health = 100; // Set initial health to 100
         this.healthBar = healthBar; // Initialize the HealthBar reference
         this.coinCount = 0;
-        addImage(new BodyImage("data/output-onlinegiftools-ezgif.com-crop (1).gif", 5f)); // Add an image to the player
         healthBar.setHealth(health); // Update the HealthBar with the initial health value
+        updateImage();
     }
 
     public void takeDamage(int damage) {
@@ -50,5 +51,20 @@ public class Player extends Walker {
 
     public int getCoinCount() {
         return coinCount;
+    }
+
+    private void updateImage() {
+        removeAllImages();
+        String image = facingRight ?
+                "data/output-onlinegiftools-ezgif.com-crop (1).gif" :
+                "data/ezgif.com-rotate.gif";
+        addImage(new BodyImage(image, 5f));
+    }
+
+    public void setFacingRight(boolean facingRight) {
+        if (this.facingRight != facingRight) {
+            this.facingRight = facingRight;
+            updateImage();
+        }
     }
 }

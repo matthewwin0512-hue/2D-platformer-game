@@ -15,19 +15,18 @@ public class PlayerControls extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode(); // Get the key code of the pressed key
-
-        // Move the player left when the LEFT arrow key is pressed
-        if (keyCode == KeyEvent.VK_LEFT) {
-            student.startWalking(-5); // Move left at a speed of -5
-        }
-        // Move the player right when the RIGHT arrow key is pressed
-        else if (keyCode == KeyEvent.VK_RIGHT) {
-            student.startWalking(5); // Move right at a speed of 5
-        }
-        // Make the player jump when the SPACE key is pressed
-        else if (keyCode == KeyEvent.VK_SPACE) {
-            student.jump(12); // Jump with a force of 12
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_LEFT:
+                student.startWalking(-5);
+                student.setFacingRight(false);
+                break;
+            case KeyEvent.VK_RIGHT:
+                student.startWalking(5);
+                student.setFacingRight(true);
+                break;
+            case KeyEvent.VK_SPACE:
+                student.jump(12);
+                break;
         }
     }
 

@@ -27,14 +27,11 @@ public class MovingCoin extends Coin implements StepListener {
         else if (currentPos.x >= rightBound) movingRight = false;
 
         // Apply movement
-        //float newX = currentPos.x + (movingRight ? speed : -speed);
-        //setPosition(new Vec2(newX, currentPos.y));
         setPosition(new Vec2(currentPos.x + (movingRight ? speed : -speed), currentPos.y))
         ;
     }
 
     @Override
     public void postStep(StepEvent e) {
-        // Not used but required by interface
     }
 }

@@ -36,7 +36,7 @@ public class Level1 extends Level {
                 .setPosition(new Vec2(6f, 11f));
 
         // Create player
-        createPlayer(new Vec2(-14f, -9f));
+        createPlayer(new Vec2(-17f, -9f));
 
         // Add enemies
         new Enemy(this, new BoxShape(1, 2f), 3, 15, 2)
