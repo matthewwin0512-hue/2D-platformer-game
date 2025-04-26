@@ -12,7 +12,7 @@ public class Level2 extends Level {
 
     @Override
     protected String getBackgroundPath() {
-        return "data/ai-generated-pastel-painted-sky-background-free-photo.jpg";
+        return "data/360_F_871072284_cQeBgRZd2QDJUSeEku7e9x8QOFErjJyP.jpg";
     }
 
     @Override
@@ -49,6 +49,12 @@ public class Level2 extends Level {
 
         new FlyingEnemy(this, new BoxShape(1, 2f), -17, -5, 2, -2)
                 .setPosition(new Vec2(-17f, -2f));
+
+        new FlyingEnemy(this, new BoxShape(1, 2f), 5, 17, 2, -2)
+                .setPosition(new Vec2(17f, -2f));
+
+        new FlyingEnemy(this, new BoxShape(1, 2f), -9, 9, 2, 13)
+                .setPosition(new Vec2(0f, 13f));
 
         // Add collectible
         new Collectible(this, new BoxShape(1, 2f))
