@@ -63,7 +63,15 @@ public class Game {
 
     public void goToNextLevel() {
         currentLevelNumber++;
-        loadLevel(currentLevelNumber);
+        if (currentLevelNumber > 3) {
+            // End the game and close the window
+            System.out.println("Game Over! You have completed all levels.");
+            frame.dispose();  // Close the JFrame window
+            System.exit(0);   // Exit the program
+        } else {
+            // Load the next level
+            loadLevel(currentLevelNumber);
+        }
     }
 
     public static void main(String[] args) {

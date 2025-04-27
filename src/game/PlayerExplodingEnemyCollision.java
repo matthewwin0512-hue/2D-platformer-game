@@ -15,8 +15,6 @@ public class PlayerExplodingEnemyCollision implements CollisionListener {
         if (e.getReportingBody() instanceof Player &&
                 e.getOtherBody() instanceof ExplodingEnemy) {
 
-            //ExplodingEnemy enemy = (ExplodingEnemy)e.getOtherBody();
-
             //  Apply contact damage
             player.takeDamage(15);
 

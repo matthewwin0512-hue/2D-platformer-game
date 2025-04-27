@@ -17,11 +17,11 @@ public class PlayerControls extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
-                student.startWalking(-5);
+                student.startWalking(-6);
                 student.setFacingRight(false);
                 break;
             case KeyEvent.VK_RIGHT:
-                student.startWalking(5);
+                student.startWalking(6);
                 student.setFacingRight(true);
                 break;
             case KeyEvent.VK_SPACE:

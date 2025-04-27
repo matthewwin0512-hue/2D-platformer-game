@@ -17,7 +17,7 @@ public class Player extends Walker {
     private boolean isAttacking = false;
     private int attackTimer = 0;
     private static final float ATTACK_RANGE = 6f;
-    private static final int ATTACK_DURATION = 120;
+    private static final int ATTACK_DURATION = 115;
 
     public Player(World world, Shape shape, HealthBar healthBar) {
         super(world, shape); // Call the superclass constructor to initialize the Walker
