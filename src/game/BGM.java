@@ -11,9 +11,9 @@ public class BGM {
     // Map each level to its BGM file (call this once at game start)
     public static void setup() {
         // Update paths to match your actual file locations
-        levelBGM.put("level1", "/sound/");
+        levelBGM.put("level1", "/sound/Mor Ardain - Roaming the Wastes - Xenoblade Chronicles 2 OST [048].wav");
         levelBGM.put("level2", "/sound/Elysium in the Dream - Xenoblade Chronicles 2 OST [007].wav");
-        levelBGM.put("boss", "/sound/data/bgm/boss.ogg");
+        levelBGM.put("level3", "/sound/Sousei No Onmyouji Ost 1-Main Theme.wav");
     }
 
     // Play BGM for a specific level

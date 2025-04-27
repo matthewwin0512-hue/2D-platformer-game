@@ -53,6 +53,7 @@ public abstract class Level extends World {
             player.addCollisionListener(new PlayerCollectibleCollision(player));
             player.addCollisionListener(new PlayerEnemyCollision(player));
             player.addCollisionListener(new CoinCollision(player, this));
+            player.addCollisionListener(new PlayerExplodingEnemyCollision(player));
         }
     }
 
@@ -64,6 +65,7 @@ public abstract class Level extends World {
     }
 
     public void createWall() {
+        wall = new Wall(this, new Vec2(-20f, 6f));
         wall = new Wall(this, new Vec2(20f, 6f));
     }
 

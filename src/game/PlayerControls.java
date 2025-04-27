@@ -27,6 +27,12 @@ public class PlayerControls extends KeyAdapter {
             case KeyEvent.VK_SPACE:
                 student.jump(12);
                 break;
+
+            case KeyEvent.VK_A: // Attack key
+                if (student.canAttack()) {
+                    student.attack();
+                }
+                break;
         }
     }
 

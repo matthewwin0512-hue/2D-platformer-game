@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+
 // Your main game entry point //
 
 public class Game {
@@ -33,22 +34,24 @@ public class Game {
         }
 
         switch(levelNumber) {
-            /**
+
             case 1:
                 currentLevel = new Level1(this);
                 BGM.playLevelBGM("level1");
                 break;
-             **/
-            case 1:
+
+
+            case 2:
                 currentLevel = new Level2(this);
                 BGM.playLevelBGM("level2");
                 break;
-                /**
+
+
             case 3:
                 currentLevel = new Level3(this);
-                BGM.playLevelBGM("boss"); // Example: level 3 uses boss music
+                BGM.playLevelBGM("level3");
                 break;
-                 **/
+
             default:
                 throw new IllegalArgumentException("Invalid level number");
         }

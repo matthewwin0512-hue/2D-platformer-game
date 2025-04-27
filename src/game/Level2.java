@@ -53,8 +53,8 @@ public class Level2 extends Level {
         new FlyingEnemy(this, new BoxShape(1, 2f), 5, 17, 2, -2)
                 .setPosition(new Vec2(17f, -2f));
 
-        new FlyingEnemy(this, new BoxShape(1, 2f), -9, 9, 2, 13)
-                .setPosition(new Vec2(0f, 13f));
+        new FlyingEnemy(this, new BoxShape(1, 2f), -9, 9, 2, 15)
+                .setPosition(new Vec2(0f, 15f));
 
         // Add collectible
         new Collectible(this, new BoxShape(1, 2f))

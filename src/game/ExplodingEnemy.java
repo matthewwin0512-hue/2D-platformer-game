@@ -3,7 +3,7 @@ package game;
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
-public class ExplodingEnemy extends DynamicBody implements StepListener {
+public class ExplodingEnemy extends DynamicBody implements DamageableEnemy, StepListener {
     private static final float DETECTION_RANGE = 10f;
     private static final float EXPLOSION_RANGE = 5f;
     private static final float SPEED = 2f;
@@ -24,6 +24,10 @@ public class ExplodingEnemy extends DynamicBody implements StepListener {
         setPosition(position);
         world.addStepListener(this);
         addImage(new BodyImage("data/ezgif.com-animated-gif-maker exploding.gif", 16f));
+    }
+
+    public void takeDamage(int damage) {
+        destroy();
     }
 
     @Override
@@ -107,6 +111,16 @@ public class ExplodingEnemy extends DynamicBody implements StepListener {
         cooldownTimer = COOLDOWN_DURATION;
         setLinearVelocity(new Vec2(0, 0));
         updateImage();
+    }
+
+    public boolean canAttack() {
+        return !isAttacking && !inCooldown;
+    }
+
+    public void triggerAttack() {
+        if (canAttack()) {
+            startAttack();
+        }
     }
 
     private void updateImage() {

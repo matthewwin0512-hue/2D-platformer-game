@@ -8,43 +8,12 @@ import org.jbox2d.common.Vec2;
  * The enemy patrols back and forth between two boundaries and interacts with the player.
  **/
 
-public class Enemy extends DynamicBody implements StepListener {
+public class Enemy extends DynamicBody implements DamageableEnemy, StepListener {
     private float leftBoundary;  // Left boundary for patrolling
     private float rightBoundary; // Right boundary for patrolling
     private float speed;         // Movement speed
     private boolean movingRight; // Direction flag
     private boolean facingRight = true; // Track visual facing direction
-
-    protected float getLeftBoundary() {
-        return leftBoundary;
-    }
-
-    protected float getRightBoundary() {
-        return rightBoundary;
-    }
-
-    protected float getSpeed() {
-        return speed;
-    }
-
-    protected boolean isMovingRight() {
-        return movingRight;
-    }
-
-    protected void setMovingRight(boolean movingRight) {
-        this.movingRight = movingRight;
-    }
-
-    protected boolean isFacingRight() {
-        return facingRight;
-    }
-
-    protected void setFacingRight(boolean facingRight) {
-        if (this.facingRight != facingRight) {
-            this.facingRight = facingRight;
-            updateImage();
-        }
-    }
 
     public Enemy(World world, Shape shape, float leftBoundary, float rightBoundary, float speed) {
         super(world, shape);
@@ -59,12 +28,20 @@ public class Enemy extends DynamicBody implements StepListener {
         world.addStepListener(this);
     }
 
+    public void takeDamage(int damage) {
+        destroy();
+    }
+
     private void updateImage() {
         removeAllImages();
         String image = facingRight ?
                 "data/d9a0e811a3c5c857ca3b6fc5a43840f2.gif" : // Right-facing image
                 "data/ezgif.com-rotate3.gif"; // Left-facing image
         addImage(new BodyImage(image, 6f));
+    }
+
+    protected boolean isFacingRight() {
+        return facingRight;
     }
 
     @Override

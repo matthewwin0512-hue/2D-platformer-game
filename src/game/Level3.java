@@ -53,7 +53,6 @@ public class Level3 extends Level {
         new Coin(this, new CircleShape(1f))
                 .setPosition(new Vec2(-10f, -4f));
 
-
         new Coin(this, new CircleShape(1f))
                 .setPosition(new Vec2(17f, -10f));
 
