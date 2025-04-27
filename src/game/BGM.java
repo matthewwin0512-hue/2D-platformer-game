@@ -14,6 +14,7 @@ public class BGM {
         levelBGM.put("level1", "/sound/Mor Ardain - Roaming the Wastes - Xenoblade Chronicles 2 OST [048].wav");
         levelBGM.put("level2", "/sound/Elysium in the Dream - Xenoblade Chronicles 2 OST [007].wav");
         levelBGM.put("level3", "/sound/Sousei No Onmyouji Ost 1-Main Theme.wav");
+        levelBGM.put("level4", "/sound/Ayasa - The reason why.wav");
     }
 
     // Play BGM for a specific level

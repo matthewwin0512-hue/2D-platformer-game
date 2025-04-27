@@ -2,8 +2,6 @@ package game;
 
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A class representing the player character in the game.
@@ -90,6 +88,7 @@ public class Player extends Walker {
     public void takeDamage(int damage) {
         health -= damage; // Reduce health by the damage amount
         if (health <= 0) {
+            health = 0;
             destroy(); // Remove the player from the world if health is 0 or below
         }
         healthBar.setHealth(health); // Update the HealthBar with the new health value

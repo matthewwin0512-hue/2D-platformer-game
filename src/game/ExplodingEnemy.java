@@ -73,9 +73,10 @@ public class ExplodingEnemy extends DynamicBody implements DamageableEnemy, Step
         Vec2 playerPos = player.getPosition();
         Vec2 enemyPos = getPosition();
         float distanceX = playerPos.x - enemyPos.x;
+        float distanceY = Math.abs(playerPos.y - enemyPos.y);
 
         // Face player direction if detected
-        if (Math.abs(distanceX) <= DETECTION_RANGE) {
+        if (Math.abs(distanceX) <= DETECTION_RANGE && distanceY <= 2f) {
             boolean shouldFaceRight = distanceX > 0;
             if (shouldFaceRight != facingRight) {
                 facingRight = shouldFaceRight;
@@ -111,16 +112,6 @@ public class ExplodingEnemy extends DynamicBody implements DamageableEnemy, Step
         cooldownTimer = COOLDOWN_DURATION;
         setLinearVelocity(new Vec2(0, 0));
         updateImage();
-    }
-
-    public boolean canAttack() {
-        return !isAttacking && !inCooldown;
-    }
-
-    public void triggerAttack() {
-        if (canAttack()) {
-            startAttack();
-        }
     }
 
     private void updateImage() {

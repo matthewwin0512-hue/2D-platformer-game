@@ -2,7 +2,6 @@ package game;
 
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
-import javax.swing.*;
 
 public class Level1 extends Level {
     public Level1(Game game) {

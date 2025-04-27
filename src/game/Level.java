@@ -1,7 +1,6 @@
 package game;
 
 import city.cs.engine.*;
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.jbox2d.common.Vec2;
@@ -9,33 +8,24 @@ import org.jbox2d.common.Vec2;
 public abstract class Level extends World {
     protected Player player;
     protected HealthBar healthBar;
-    protected List<Enemy> enemies = new ArrayList<>();
-    protected List<Collectible> collectibles = new ArrayList<>();
     protected BackgroundView view;
     protected DebugViewer debugView;
-    protected JFrame frame;
     protected Game game;
     protected float levelExitX = 22f;
     protected Wall wall;
     protected final int coinsToCollect = 5;
-    protected List<Coin> coins = new ArrayList<>();
     private final StepListener exitListener;
     protected List<MovingPlatform> movingPlatforms = new ArrayList<>();
 
     public Level(Game game) {
         this.game = game;
         this.healthBar = new HealthBar();
-        this.view = new BackgroundView(this, 800, 750, getBackgroundPath(), healthBar);
-        this.frame = new JFrame("City Game - Level " + game.getCurrentLevelNumber());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(view);
-        view.setFocusable(true);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
 
-        this.debugView = new DebugViewer(this, 800, 750);
-        debugView.setVisible(false);
+        this.view = new BackgroundView(this, 800, 750, getBackgroundPath(), healthBar);
+        view.setFocusable(true);
+
+        //this.debugView = new DebugViewer(this, 800, 750);
+        //debugView.setVisible(false);
 
         exitListener = new StepListener() {
             @Override public void preStep(StepEvent e) {
@@ -44,6 +34,10 @@ public abstract class Level extends World {
             @Override public void postStep(StepEvent e) {}
         };
         this.addStepListener(exitListener);
+    }
+
+    public BackgroundView getView() {
+        return view;
     }
 
     protected abstract String getBackgroundPath();
@@ -100,15 +94,10 @@ public abstract class Level extends World {
         if (player != null) {
             view.removeKeyListener(new PlayerControls(player));
         }
-        if (view != null) {
-            frame.remove(view);
-        }
         if (debugView != null) {
             debugView.setVisible(false);
             debugView.dispose();
         }
-        frame.dispose();
-        stop();
     }
 
     public void start() {

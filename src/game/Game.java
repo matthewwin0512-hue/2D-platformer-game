@@ -1,28 +1,24 @@
 package game;
 
-import city.cs.engine.*;
-import city.cs.engine.Shape;
-import org.jbox2d.common.Vec2;
-
 import javax.swing.*;
-
-import java.awt.*;
-import java.io.IOException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 
 // Your main game entry point //
 
 public class Game {
     private Level currentLevel;
     private int currentLevelNumber = 1;
+    private JFrame frame;
 
     public int getCurrentLevelNumber() {
         return currentLevelNumber;
     }
 
     public Game() {
+        frame = new JFrame("City Game");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 750);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
         // Initialize BGM system
         BGM.setup();
         loadLevel(currentLevelNumber);
@@ -30,6 +26,8 @@ public class Game {
 
     private void loadLevel(int levelNumber) {
         if (currentLevel != null) {
+            currentLevel.stop();
+            frame.remove(currentLevel.getView());
             currentLevel.destroy();
         }
 
@@ -55,6 +53,10 @@ public class Game {
             default:
                 throw new IllegalArgumentException("Invalid level number");
         }
+
+        frame.add(currentLevel.getView());
+        frame.revalidate();
+        frame.repaint();
 
         currentLevel.start();
     }
